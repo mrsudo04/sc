@@ -70,6 +70,9 @@ Choose common command based on OS (Linux / Windows / macOS):
  -> Go to official download page
  -> Select "Python" (pysonar)
 
+Install dependency:
+wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.0.1.6346-linux-x64.zip  
+
 Install pysonar:
  pip install pysonar-scanner --break-system-package
 
