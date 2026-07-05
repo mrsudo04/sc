@@ -1,0 +1,108 @@
+SONARQUBE:
+
+SONARQUBE - INSTALLATION & SETUP NOTES
+
+======================================================
+1. INSTALL SONARQUBE (COMMUNITY BUILD - VIA DOCKER)
+======================================================
+
+Community build -> download SonarQube via Docker
+
+Run container:
+ docker run -d --name sonarqube-custom --restart unless-stopped -p 9000:9000 sonarqube:community
+
+Access the web interface:
+ http://localhost:9000
+ or
+ http://<host-ip>:9000
+
+Default login credentials:
+ Username: admin
+ Password: admin
+ (You will be prompted to set a new ID/password on first login)
+
+------------------------------------------------------
+IF THE DEFAULT IMAGE / SETUP DOESN'T WORK
+------------------------------------------------------
+Run with bootstrap checks disabled:
+
+ docker run -d --name sonarqube-custom --restart unless-stopped -p 9000:9000 -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true sonarqube:community
+
+
+======================================================
+2. CREATE A LOCAL PROJECT ON THE SONARQUBE DASHBOARD
+======================================================
+
+Steps:
+ Create Project -> Local Project
+
+ Project Name : ditiss
+ Project Key : ditiss
+ Main Branch Name : main
+
+ -> Follow the instance's default number of days (or customize)
+ -> Click Create
+
+
+======================================================
+3. ANALYSIS METHOD
+======================================================
+
+Analysis method -> Locally
+
+ -> Generate a project token
+ - Provide a token name
+ - Click Generate
+ - Copy the token (save it, shown only once)
+
+ -> Analyze your project (this generates the project token used for scanning)
+
+ Generate token for project -> edit number of days (token expiry) as needed
+
+
+======================================================
+4. INSTALL THE SCANNER (PYSONAR)
+======================================================
+
+Copy the scanner command from the SonarQube project setup page, OR:
+
+Choose common command based on OS (Linux / Windows / macOS):
+ -> Go to official download page
+ -> Select "Python" (pysonar)
+
+Install pysonar:
+ pip install pysonar-scanner --break-system-package
+
+Paste the 2nd command shown on the SonarQube site (project-specific run command),
+e.g.:
+ pysonar
+
+
+======================================================
+5. RUNNING A SCAN (ALTERNATIVE / MANUAL SETUP)
+======================================================
+
+If scanner not available as a package:
+
+ mkdir sonar
+ unzip <scanner-zip> -d sonar_folder
+
+ cd .sonar
+ ls
+ cat report-task.txt
+
+
+======================================================
+6. SCANNING A SAMPLE PROJECT (VULN-BANK)
+======================================================
+
+Clone the sample vulnerable project:
+ git clone <vulnbank-repo-url>
+ cd vuln-bank
+
+Install scanner in the project folder:
+ pip install pysonar --break-system-package
+
+Run the 2nd command from the SonarQube site (project token / run command):
+ pysonar
+
