@@ -1,0 +1,18 @@
+SCAPY:
+
+sudo apt-get install python3-scapy -y
+scapy
+a = IP()
+b = TCP()
+a.show()
+b.show()
+a.src ='ip of source/attacker'
+a.dst = 'ip of victim'
+b.flags = 'FSA' ----> FLAGS TO SET
+send (a/b,count=2)
+send (a/b/ 'hiie guyzz',count=2)
+
+on other machine if it is snort write these rules and check logs
+alert icmp 192.168.74.166 any -> 192.168.74.235 any (msg:"ICMP Ping From Kali Detected"; sid:1000001; rev:1;)
+alert tcp 192.168.74.166 any -> 192.168.74.235 any (msg:"Scapy Custom TCP Message Received"; content:"hiie guyzz"; nocase; sid:1000009; rev:1;)
+
