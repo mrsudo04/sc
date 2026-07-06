@@ -1,0 +1,33 @@
+On dashboard click on quality profile 
+
+go to project based on profiles
+pick python 
+click on existing profile  sonarway
+
+click on 3 dots 
+copy the builtin profile 
+providse a new name and save 
+
+open your new custom profile 
+click on inactive rules 
+
+go to bulk changes in menu 
+select activate in our $profile
+
+configure quality gate 
+go to quality gate 
+
+click on copy (it'll copy builtin profile)
+give the name 
+
+once created go to 3 dots & make this quality gate as default
+
+go to project menu 
+go to policies 
+go to quality profiles
+
+if quality profile is already there 
+select it and delete it first 
+add language button 
+select language 
+select profile
